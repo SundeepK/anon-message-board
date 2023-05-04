@@ -1,7 +1,7 @@
 const express = require('express')
 const schemas = require('./schemas/message')
 const validate = require('./middleware/schemaMiddleware')
-const messageService = require('./messageService')
+const messageService = require('./services/messageService')
 const app = express()
 const port = 3000
 
@@ -12,8 +12,8 @@ app.get('/messages', (req, res) => {
 })
 
 app.post('/messages', validate(schemas.messagePOST), (req, res) => {
-  res.json(req.body);
   messageService.save(req.body);
+  res.json(req.body);
 })
 
 app.listen(port, () => {
