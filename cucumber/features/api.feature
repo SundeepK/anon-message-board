@@ -1,11 +1,11 @@
 Feature: Message Board API
 
   Scenario: posts message to anon board
-    When I POST a message to "/messages"
+    When I POST a message to "/api/messages"
       | name  | anon1            |
       | body  | Some message     |
       | title | My first message |
-    Then I make a GET against "/messages"
+    Then I make a GET against "/api/messages"
       """
         [
           {

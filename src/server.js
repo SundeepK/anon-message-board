@@ -7,14 +7,11 @@ const port = 3000
 
 app.use(express.json());
 
-app.get('/messages', (req, res) => {
-  res.json(messageService.list())
-})
+app.get('/api/messages', messageService.listMessages)
 
-app.post('/messages', validate(schemas.messagePOST), (req, res) => {
-  messageService.save(req.body);
-  res.json(req.body);
-})
+app.post('/api/messages', validate(schemas.messagePOST), messageService.saveMessage)
+
+app.post('/api/messages/:messageId/reply', validate(schemas.messagePOST), messageService.saveMessageReply)
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
