@@ -3,7 +3,7 @@ const assert = require('assert');
 
 When('I POST a message to {string}', function (path, dataTable) {
     var body = dataTable.rowsHash()
-    const url = `http://localhost:3000${path}`
+    const url = `http://anon-board:3000${path}`
     let payload = JSON.stringify(body);
     console.log(`Found payload ${payload}`)
     return fetch(url, {
@@ -17,7 +17,7 @@ When('I POST a message to {string}', function (path, dataTable) {
 });
 
 Then('I make a GET against {string}', async function (path, expectedResponse) {
-    const url = `http://localhost:3000${path}`
+    const url = `http://anon-board:3000${path}`
      return fetch(url)
         .then(response => response.json())
         .then((json) => {

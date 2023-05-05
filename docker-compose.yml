@@ -1,0 +1,18 @@
+version: "3.9"
+networks:
+  cucumber-network:
+    driver: bridge
+
+services:
+  anon-board:
+    build: .
+    ports:
+      - "3000:3000"
+    networks:
+      - cucumber-network
+  cucumber:
+    build: ./cucumber
+    networks:
+      - cucumber-network
+    depends_on:
+      - anon-board
